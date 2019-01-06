@@ -22,31 +22,32 @@ bot.on("message", async message => {
   let command = messageArr[0];
   let args = messageArr.slice(1);
 
+
   if(command === `${prefix}raid`){
-    return message.channel.send("memes");
+    var query = `lvl ${args[0]} ${args[1]}`;
+    var T = new Twit(config)
+
+    var params = {
+      q: query,
+      count: 20
+    }
+    var finalString = "Raids:\n gdi";
+    T.get('search/tweets', params, function(err, data, response){
+      var tweets = data.statuses;
+
+      for (var i = 0; i < tweets.length; i++) {
+        var spt = tweets[i].text.split("\n");
+        finalString = finalString.concat(`${spt[0]}\n `);
+        finalString = finalString.concat(`${spt[1]}\n `);
+        finalString = finalString.concat(`${tweets[i].created_at}\n `);
+        finalString = finalString.concat("");
+      }
+    });
+
+    return message.channel.send(finalString);
   }
 })
 
 bot.login(botconfig.token);
 
-var T = new Twit(config)
-
-var params = {
-  q: 'lvl 60 leviathan',
-  count: 20
-}
-
-T.get('search/tweets', params, gotData);
-
 //TWITTER API
-function gotData(err, data, response){
-  var tweets = data.statuses;
-  for (var i = 0; i < tweets.length; i++) {
-    var spt = tweets[i].text.split("\n");
-      console.log(spt[0]);
-      console.log(spt[2]);
-
-    console.log(tweets[i].created_at);
-    console.log();
-  }
-}
