@@ -1,0 +1,23 @@
+{
+  "name": "npm_gbf_bot",
+  "version": "1.0.0",
+  "description": "Using Twitter API to recover backup requests for Granblue Fantasy",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlbertQin/GBF-Discord-BOT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlbertQin/GBF-Discord-BOT/issues"
+  },
+  "homepage": "https://github.com/AlbertQin/GBF-Discord-BOT#readme",
+  "dependencies": {
+    "twit": "^2.2.11"
+  }
+}
