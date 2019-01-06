@@ -44,7 +44,18 @@ bot.on("message", async message => {
         var spt = tweets[i].text.split("\n");
         finalString = finalString.concat(`${spt[0]}\n `);
         finalString = finalString.concat(`${spt[2]}\n `);
-        finalString = finalString.concat(`${tweets[i].created_at}\n `);
+
+        var time = tweets[i].created_at;
+        var ptime = time.split(" ");
+        var t_time = ptime[3].split(":");
+
+        console.log(t_time[0]);
+
+        if(parseInt(t_time[0],10) - 5 < 0){
+          finalString = finalString.concat(`${ptime[1]} ${parseInt(ptime[2]) - 1} ${(parseInt(t_time[0]) - 5) + 24 }:${parseInt(t_time[1])}:${parseInt(t_time[2])}\n `);
+        } else {
+          finalString = finalString.concat(`${ptime[1]} ${parseInt(ptime[2])} ${(parseInt(t_time[0]) - 5) % 24 }:${parseInt(t_time[1])}:${parseInt(t_time[2])}\n `);
+        }
         finalString = finalString.concat("\n");
       }
       return message.channel.send(finalString);
