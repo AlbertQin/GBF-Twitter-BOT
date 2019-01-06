@@ -1,7 +1,6 @@
 console.log('Bot is starting');
 
 var Twit = require('twit');
-var config = process.env.CONFIGS;
 var Discord = require("discord.js");
 
 
@@ -28,7 +27,12 @@ bot.on("message", async message => {
 
   if(command === `${prefix}raid`){
     var query = `lvl ${args[0]} ${args[1]}`;
-    var T = new Twit(config)
+    var T = new Twit({
+      consumer_key: process.env.consumer_key,
+      consumer_secret: process.env.consumer_secret,
+      access_token: process.env.access_token,
+      access_token_secret: process.env.access_token_secret,
+    })
 
     var params = {
       q: query,

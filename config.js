@@ -1,4 +1,4 @@
-module.exports = {
+{
   consumer_key:         'YnHyBc2nllMndlZiVrfaXAOZW',
   consumer_secret:      'z8nBtcLMfOGXqfkh5rdGbIVPPq0FxYuGunJKDeZMw5zRjfiUAQ',
   access_token:         '1081668004474105856-m8KXKjsPzEngf7vdLfUqEkE16cugEL',
