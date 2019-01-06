@@ -22,6 +22,10 @@ bot.on("message", async message => {
   let command = messageArr[0];
   let args = messageArr.slice(1);
 
+  if(command === `${prefix}raid` && args === 0){
+     return message.channel.send("dis aint valid");
+  }
+
 
   if(command === `${prefix}raid`){
     var query = `lvl ${args[0]} ${args[1]}`;
@@ -29,22 +33,23 @@ bot.on("message", async message => {
 
     var params = {
       q: query,
-      count: 20
+      count: 15
     }
-    var finalString = "Raids:\n gdi";
+
     T.get('search/tweets', params, function(err, data, response){
+      var finalString = "Raids:\n";
       var tweets = data.statuses;
 
       for (var i = 0; i < tweets.length; i++) {
         var spt = tweets[i].text.split("\n");
         finalString = finalString.concat(`${spt[0]}\n `);
-        finalString = finalString.concat(`${spt[1]}\n `);
+        finalString = finalString.concat(`${spt[2]}\n `);
         finalString = finalString.concat(`${tweets[i].created_at}\n `);
-        finalString = finalString.concat("");
+        finalString = finalString.concat("\n");
       }
+      return message.channel.send(finalString);
     });
 
-    return message.channel.send(finalString);
   }
 })
 
