@@ -5,6 +5,22 @@ var config = require('./config');
 
 var T = new Twit(config)
 
-T.get('search/tweets', { q: 'banana since:2011-07-11', count: 100 }, function(err, data, response) {
-  console.log(data)
-})
+var params = {
+  q: 'lvl 60 leviathan',
+  count: 20
+}
+
+T.get('search/tweets', params, gotData);
+
+
+function gotData(err, data, response){
+  var tweets = data.statuses;
+  for (var i = 0; i < tweets.length; i++) {
+    var spt = tweets[i].text.split("\n");
+      console.log(spt[0]);
+      console.log(spt[2]);
+
+    console.log(tweets[i].created_at);
+    console.log();
+  }
+}
