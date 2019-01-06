@@ -1,8 +1,7 @@
 console.log('Bot is starting');
 
 var Twit = require('twit');
-var config = require('./config');
-var botconfig = require("./botconfig.json");
+var config = process.env.CONFIGS;
 var Discord = require("discord.js");
 
 
@@ -17,7 +16,7 @@ bot.on("message", async message => {
   if(message.author.bot) return;
   if(message.channel.type === "dm") return;
 
-  let prefix = botconfig.prefix;
+  let prefix = "!";
   let messageArr = message.content.split(" ");
   let command = messageArr[0];
   let args = messageArr.slice(1);
@@ -64,6 +63,6 @@ bot.on("message", async message => {
   }
 })
 
-bot.login(botconfig.token);
+bot.login(process.env.BOT_TOKEN);
 
 //TWITTER API
