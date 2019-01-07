@@ -36,7 +36,7 @@ bot.on("message", async message => {
 
     var params = {
       q: query,
-      count: 15
+      count: 10
     }
 
     T.get('search/tweets', params, function(err, data, response){
